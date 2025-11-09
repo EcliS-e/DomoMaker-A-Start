@@ -27,7 +27,7 @@ const login = (req, res) => {
         return res.status(401).json({error: 'Wrong username or password!'});
     }
 
-    return res.json({redirect:  '/maker'});
+    return res.json({redirect: '/maker'});
 
  });
 };
@@ -48,7 +48,7 @@ const signup = async (req, res) => {
     }
     
 try {
-    const hash = await Account.genereateHash(pass);
+    const hash = await Account.generateHash(pass);
     const newAccount = new Account({username, pasword: hash});
     await newAccount.save();
     return res.json({redirect: '/maker'});
