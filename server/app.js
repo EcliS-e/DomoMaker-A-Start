@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const path = require('path');
 const express = require('express');
 const compression = require('compression');
@@ -26,9 +28,9 @@ app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
 app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json);
+app.use(express.json());
 
-app.engine('handlebars', expressHandlebars.engine);
+app.engine('handlebars', expressHandlebars.engine({defaultLayout: ''}));
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
 
